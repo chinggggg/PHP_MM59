@@ -1,0 +1,23 @@
+sid 
+name
+email
+mobile 
+birthday
+address
+pay_method
+
+
+長度預設就好
+文字需要編碼數值不用
+屬性 不設
+索引 primary 主漸 >>不可以重複   A_l一定要勾
+
+created_at
+
+
+
+手機用字串！
+
+資料庫會用英文不要符號、數字，當變數名稱命名，雙重字用底線
+資料表名稱 created_at
+建立時間
