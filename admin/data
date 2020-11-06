@@ -1,0 +1,5 @@
+#Options Indexes FollowSymLinks
+    
+    Options Indexes FollowSymLinks ExecCGI Includes
+    AllowOverride All
+    Require all granted
