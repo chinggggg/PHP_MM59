@@ -57,29 +57,37 @@ if ($totalRows != 0) {
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
+                    <th scope="col"><i class="far fa-trash-alt"></i></th>
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
                     <th scope="col">Email</th>
                     <th scope="col">Mobile</th>
                     <th scope="col">birthday</th>
                     <th scope="col">Address</th>
+                    <th scope="col">建立時間</th>
+                    <th scope="col"><i class="far fa-edit"></i></th>
 
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($row as $r) : ?>
                     <tr>
-
+                        <td>
+                            <a href="javascript: delete_it(<?= $r['sid'] ?>)">
+                                <i class="far fa-trash-alt"></i>
+                            </a>
+                        </td>
                         <td> <?= $r['sid'] ?></td>
-                        <td> <?= $r['name'] ?></td>
+                        <td> <?= htmlentities($r['name']) ?></td>
                         <td> <?= $r['email'] ?></td>
                         <td> <?= $r['mobile'] ?></td>
                         <td> <?= $r['birthday'] ?></td>
-                        <td> <?= $r['address'] ?></td>
+                        <td> <?= strip_tags($r['address']) ?></td>
+                        <td> <?= $r['created_at'] ?></td>
+                        <td><a href="ab-edit.php?sid=<?= $r['sid'] ?>"><i class="far fa-edit"></i></a></td>
 
                     </tr>
                 <?php endforeach; ?>
-
             </tbody>
         </table>
     </div>
@@ -87,7 +95,17 @@ if ($totalRows != 0) {
 
 
 
+<?php include __DIR__ . '/scripts.php'; ?>
+<script>
+    function delete_it(sid) {
+        if (confirm(`確定要刪除${sid}的資料嗎？`)) {
+
+            location.href = "ab-del.php?sid=" + sid;
+
+        }
+    }
+</script>
 
 
-<script src="/lib/jquery.js"></script>
-<script src="/bootstrap/js/bootstrap.bundle.js"></script>
+
+<?php include __DIR__ . '/foot.php'; ?>

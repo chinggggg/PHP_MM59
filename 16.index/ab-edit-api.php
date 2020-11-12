@@ -10,13 +10,12 @@ $output = [
 if (empty($_POST['name'])) {
     echo json_encode($output, JSON_UNESCAPED_UNICODE), exit;
 }
-$spl = "INSERT INTO `address_book`(
-    `name`, `email`, `mobile`, 
-    `birthday`, `address`, `created_at`) VALUES (
-    ?,?,?,
-    ?,?,NOW()
-
-    )";
+$spl = "UPDATE `address_book` SET `name`=?,
+`email`=?,
+`mobile`=?,
+`birthday`=?,
+`address`=?
+ WHERE `sid`=?";
 
 $stmt = $pdo->prepare($spl);
 $stmt->execute([
@@ -25,10 +24,13 @@ $stmt->execute([
     $_POST['mobile'],
     $_POST['birthday'],
     $_POST['address'],
+    $_POST['sid'],
 ]);
 
 if ($stmt->rowCount() == 1) {
     $output['success'] = true;
     $output['error'] = '';
-};
+} else {
+    $output['error'] = '資料沒修改';
+}
 echo json_encode($output, JSON_UNESCAPED_UNICODE);
