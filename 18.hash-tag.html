@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 400px;
+            height: 800px;
+            background-color: burlywood;
+        }
+
+    </style>
+</head>
+<body>
+    <div style="position: fixed; left: 60%; top: 10%;">
+        <a href="#b1">1</a>
+        <a href="#b2">2</a>
+        <a href="#b3">3</a>
+    </div>
+
+    <div id="b1" class="box"></div>
+    <div id="b2" class="box" style="background-color: coral;"></div>
+    <div id="b3" class="box" style="background-color: darkcyan;"></div>
+
+
+
+    <script>
+        
+        const handleHash = ()=>{
+            let a = 'b1';
+            if(location.hash) {
+                a = location.hash.slice(1);
+            }
+            console.log(a);
+        }
+
+        window.addEventListener('hashchange',handleHash);
+            handleHash();
+        
+
+
+    </script>
+</body>
+</html>

@@ -18,6 +18,7 @@
     # =189 php只做數字相加，有文字會看成0 ＆會警告
 
     echo "hello $b ~~<br>";
+    
     #這個不行
     echo 'hello $b ~~<br>';
 
