@@ -2,6 +2,7 @@
 require __DIR__ . '/config.php'; ?>
 
 <?php
+require __DIR__ . '/ab-admin-required.php';
 if (isset($_GET['sid'])) {
     $sid = intval($_GET['sid']);
 } else {

@@ -1,5 +1,6 @@
 <?php
 require __DIR__ . '/config.php';
+require __DIR__ . '/ab-admin-required.php';
 $output = [
     'success' => false,
     'code' => 0,

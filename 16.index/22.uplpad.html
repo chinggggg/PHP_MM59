@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form name="form1 " style="display: none;">
+        <input type="file" name="avatar" accept="image/*">
+    </form>
+    
+    <button onclick="field.click()">上傳</button>
+    <img id="myimg" src="" alt="">
+    
+
+<script>
+    const field = document.querySelector('input[name=avatar]');
+
+    field.addEventListener('change', function(){
+    
+
+        const fd = new FormData(document.form1);
+        fetch("20.uplpad-single-avatar.php",{
+            method: 'POST',
+            body: fd
+        })
+    
+
+        .then(r=>r.json())
+
+        .then(obj=>{
+            console.log(obj);
+            document.querySelector('#myimg').src = obj.img;
+        })
+
+    });
+
+
+
+</script>
+
+</body>
+</html>

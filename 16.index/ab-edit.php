@@ -1,5 +1,6 @@
 <?php include __DIR__ . '/config.php';
 $pagename = 'ab-insert';
+require __DIR__ . '/ab-admin-required.php';
 ?>
 
 <?php

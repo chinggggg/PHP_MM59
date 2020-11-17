@@ -1,6 +1,6 @@
 <?php include __DIR__ . '/config.php';
 $pagename = 'ab-insert';
-
+require __DIR__ . '/ab-admin-required.php';
 
 ?>
 
@@ -17,7 +17,7 @@ $pagename = 'ab-insert';
     <div class="row mt-5">
         <div class="col-12">
 
-
+    
             <div id="info-bar" class="alert alert-danger" role="alert" style="display: none;">
                 <?= $msg ?>
             </div>
