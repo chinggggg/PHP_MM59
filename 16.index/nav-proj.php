@@ -33,11 +33,11 @@ if (!isset($_SESSION)) {
             <ul class="navbar-nav ">
 
                 <li class="nav-item mr-3">
-                    <a class="nav-link <?= $pagename == 'ab-list' ? 'active' : '' ?> " href="prod-list.php">商品列表</a>
+                    <a class="nav-link <?= $pagename == 'prod-list' ? 'active' : '' ?> " href="prod-list.php">商品列表</a>
                 </li>
 
                 <li class="nav-item ">
-                    <a class="nav-link <?= $pagename == 'ab-insert' ? 'active' : '' ?> " href="">購物車
+                    <a class="nav-link <?= $pagename == 'ab-insert' ? 'active' : '' ?> " href="cart-list.php">購物車
                         <span class="badge badge-pill badge-danger count-badge">0</span>
                     </a>
                 </li>
@@ -50,13 +50,33 @@ if (!isset($_SESSION)) {
 
             <ul class="navbar-nav ml-auto ">
 
-                <li class="nav-item mr-3">
-                    <a class="nav-link <?= $pagename == 'ab-list' ? 'active' : '' ?> " href="proj-login.php">登入</a>
-                </li>
+                <?php if (isset($_SESSION['user'])) : ?>
 
-                <li class="nav-item ">
-                    <a class="nav-link <?= $pagename == 'ab-insert' ? 'active' : '' ?> " href="proj-sign-in.php">註冊</a>
-                </li>
+                    <li class="nav-item mr-3 dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <?= $_SESSION['user']['nickname'] ?>
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="order-history.php">歷史訂單</a>
+                            <a class="dropdown-item" href="#">修改資料</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item ">
+                        <a class="nav-link <?= $pagename == 'prod-insert' ? 'active' : '' ?> " href="user-logout.php">登出</a>
+                    </li>
+                <?php else : ?>
+                    <li class="nav-item mr-3">
+                        <a class="nav-link <?= $pagename == 'prod-list' ? 'active' : '' ?> " href="user-login.php">登入</a>
+                    </li>
+
+                    <li class="nav-item ">
+                        <a class="nav-link <?= $pagename == 'prod-insert' ? 'active' : '' ?> " href="user-sign-in.php">註冊</a>
+                    </li>
+                <?php endif; ?>
+
+
 
 
             </ul>
@@ -82,5 +102,4 @@ if (!isset($_SESSION)) {
         console.log(data);
         countCart(data.cart);
     }, 'json');
-
 </script>

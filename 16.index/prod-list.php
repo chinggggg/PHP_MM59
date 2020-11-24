@@ -133,9 +133,17 @@ if ($totalRows != 0) {
                 <?php foreach ($row as $r) : ?>
                     <div class="col-md-3 product-item" data-sid="<?= $r['sid'] ?>">
                         <div class="card">
-                            <img src="../imgs/big/<?= $r['book_id'] ?>.png" class="card-img-top" alt="...">
+                            <a href="prod-detail01.php?sid=<?= $r['sid'] ?>" target="_blank">
+                                <img src="../imgs/big/<?= $r['book_id'] ?>.png" class="card-img-top" alt="...">
+                            </a>
+
+
                             <div class="card-body">
-                                <h6 class="card-text"><?= $r['bookname'] ?></h6>
+                                <h6 class="card-text">
+                                    <a href="javascript: showProductModal(<?= $r['sid'] ?>)">
+                                        <?= $r['bookname'] ?>
+                                    </a>
+                                </h6>
                                 <p><i class="fas fa-user"></i> <?= $r['author'] ?></p>
                                 <p><i class="fas fa-dollar-sign"> </i><?= $r['price'] ?></p>
 
@@ -153,6 +161,28 @@ if ($totalRows != 0) {
                 <?php endforeach; ?>
             </div>
 
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col">
+            <div class="modal" id="exampleModal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <iframe src="prod-detail01.php?sid=<?= $r['sid'] ?>" frameborder="0"></iframe>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -195,9 +225,14 @@ if ($totalRows != 0) {
             action: 'add'
         }, function(data) {
             console.log(data);
+            countCart(data.cart);
         }, 'json');
 
     });
+
+    function showProductModal(sid) {
+        $('#exampleModal').modal('show')
+    }
 </script>
 
 <?php include __DIR__ . '/foot.php'; ?>
